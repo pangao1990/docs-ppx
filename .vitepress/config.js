@@ -54,7 +54,7 @@ export default defineConfig({
     nav: [
       {
         text: "指南",
-        link: "/guide/introduction",
+        link: "/guide/start/introduction",
         activeMatch: "/guide", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
       },
       {
