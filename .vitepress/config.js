@@ -2,10 +2,10 @@ import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang: "zh-CN",
   title: "PPX",
   description:
     "基于 pywebview 和 PyInstaller 框架，构建 macOS 和 Windows 平台的客户端",
-  lang: "zh-CN",
   base: "/docs-ppx/", // 公共基础路径
   srcDir: "./src", // 源目录
   outDir: "./dist", // 构建输出位置
@@ -13,6 +13,38 @@ export default defineConfig({
   head: [["link", { rel: "icon", href: "/logo.svg" }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
+    // 定义右侧菜单导航
+    nav: [
+      {
+        text: "指南",
+        link: "/guide/start/introduction",
+        activeMatch: "/guide", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
+      },
+      {
+        text: "API",
+        link: "/api/webview-create-window",
+        activeMatch: "/api", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
+      },
+      {
+        text: "致谢",
+        link: "/thanks/",
+        activeMatch: "/thanks", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
+      },
+      {
+        text: "相关链接",
+        items: [
+          {
+            text: "讨论问题",
+            link: "https://github.com/pangao1990/PPX/issues",
+          },
+          {
+            text: "更新日志",
+            link: "https://github.com/pangao1990/PPX/releases",
+          },
+        ],
+      },
+    ],
 
     // 侧边栏
     sidebar: {
@@ -47,34 +79,39 @@ export default defineConfig({
           ],
         },
       ],
-      "/api/": [],
+      "/api/": [
+        {
+          text: "API",
+          collapsed: false,
+          items: [
+            {
+              text: "webview.create_window",
+              link: "/api/webview-create-window",
+            },
+            {
+              text: "webview.start",
+              link: "/api/webview-start",
+            },
+            {
+              text: "webview.screens",
+              link: "/api/webview-screens",
+            },
+            {
+              text: "webview.menu",
+              link: "/api/webview-menu",
+            },
+            {
+              text: "webview.drag_region_selector",
+              link: "/api/webview-DRAG-REGION-SELECTOR",
+            },
+            {
+              text: "window",
+              link: "/api/window",
+            },
+          ],
+        },
+      ],
     },
-
-    // 定义右侧菜单导航
-    nav: [
-      {
-        text: "指南",
-        link: "/guide/start/introduction",
-        activeMatch: "/guide", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
-      },
-      {
-        text: "致谢",
-        link: "/thanks/",
-      },
-      {
-        text: "相关链接",
-        items: [
-          {
-            text: "讨论问题",
-            link: "https://github.com/pangao1990/PPX/issues",
-          },
-          {
-            text: "更新日志",
-            link: "https://github.com/pangao1990/PPX/releases",
-          },
-        ],
-      },
-    ],
 
     lang: "zh-CN",
 
@@ -95,6 +132,9 @@ export default defineConfig({
       },
     ],
 
+    // 最后更新的文本
+    lastUpdatedText: "最后更新",
+
     // 为此页提供修改建议
     editLink: {
       pattern: "https://github.com/pangao1990/docs-ppx/edit/main/src/:path",
@@ -112,6 +152,15 @@ export default defineConfig({
       copyright:
         '本文档内容版权为 <a href="https://blog.pangao.vip/about" target="_blank" style="color:#10b981" onMouseOver="this.style.color=\'#059669\';this.style.textDecoration=\'underline\'" onMouseOut="this.style.color=\'#10b981\';this.style.textDecoration=\'none\'">PanGao</a> 所有，保留所有权利。',
     },
+
+    // 显示在大纲中的标题级别
+    outline: "deep",
+
+    // 大纲标题
+    outlineTitle: "大纲链接",
+
+    // 返回顶部
+    returnToTopLabel: "返回顶部",
 
     // 本地搜索
     search: {
