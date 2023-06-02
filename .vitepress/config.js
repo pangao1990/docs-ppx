@@ -58,6 +58,10 @@ export default defineConfig({
         activeMatch: "/guide", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
       },
       {
+        text: "致谢",
+        link: "/thanks/",
+      },
+      {
         text: "相关链接",
         items: [
           {
