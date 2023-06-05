@@ -10,7 +10,22 @@ export default defineConfig({
   srcDir: "./src", // 源目录
   outDir: "./dist", // 构建输出位置
   lastUpdated: true, //开启上次更新时间
-  head: [["link", { rel: "icon", href: "/logo.svg" }]],
+  head: [
+    ["link", { rel: "icon", href: "/logo.svg" }],
+    [
+      "script",
+      {},
+      `
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e2f1267b862442d982dfdc8fff4ec5a1";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+        `,
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
