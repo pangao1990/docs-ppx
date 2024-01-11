@@ -6,7 +6,7 @@
 
 - pnpm 8.x+ ([pnpm 安装教程](https://pnpm.io/zh/installation))
 
-- Python 3.7-3.9 ([Python 安装教程](https://blog.pangao.vip/Python环境搭建及模块安装))
+- Python 3.8-3.11 ([Python 安装教程](https://blog.pangao.vip/Python环境搭建及模块安装))
 
 ### 应用下载
 

@@ -2,7 +2,7 @@
 
 ### 前言
 
-本项目业务层（即：后端）使用 `Python` 脚本开发，建议将业务层代码置于 `api` 文件夹中。业务层的 Python 代码可通过 域间通信 与视图层的 JavaScript 通信。
+本项目业务层（即：后端）使用 `Python` 脚本开发，建议将业务层代码置于 `api` 文件夹中。业务层的 Python 代码可通过 [域间通信](/guide/expert/communication) 与视图层的 `JavaScript` 通信。
 
 ### 功能
 

@@ -4,13 +4,12 @@
 
 ```Python
 webview.create_window(title, url=None, html=None, js_api=None, width=800,
-                      height=600, x=None, y=None, resizable=True,
-                      fullscreen=False, min_size=(200, 100),hidden=False,
-                      frameless=False, easy_drag=True, minimized=False,
-                      on_top=False, confirm_close=False, localization=None
-                      background_color='#FFFFFF', transparent=False,
-                      text_select=False, zoomable=False, draggable=False,
-                      server=http.BottleServer, server_args={})
+    height=600, x=None, y=None, screen=None, resizable=True, fullscreen=False,
+    min_size=(200, 100), hidden=False, frameless=False, easy_drag=True,
+    focus=True, minimized=False, maximized=False, on_top=False,
+    confirm_close=False, background_color='#FFFFFF', transparent=False,
+    text_select=False, zoomable=False, draggable=False,
+    server=http.BottleServer, server_args={}, localization=None)
 ```
 
 - **`title`** 窗口标题。
@@ -21,13 +20,16 @@ webview.create_window(title, url=None, html=None, js_api=None, width=800,
 - **`height`** 窗户高度。默认值为 **600** 。
 - **`x`** 窗口 x 坐标。默认值 **居中** 。
 - **`y`** 窗口 y 坐标。默认值 **居中** 。
+- **`screen`** 屏幕显示窗口。`screen` 是由 `webview.screens` 返回的屏幕实例 。
 - **`resizable`** 是否可以调整窗口大小。默认值为 **True** 。
 - **`fullscreen`** 是否开启全屏模式。默认为 **False** 。
 - **`min_size`** 指定最小窗口大小的元组（宽度、高度）。默认值是 **(200, 100)** 。
 - **`hidden`** 是否隐藏窗口。默认为 **False** 。
 - **`frameless`** 是否开启无框窗口。默认值为 **False** 。
-- **`easy_drag`** 是否开启无框窗口的拖动模式。可以通过拖动任何点来移动窗口。默认值为 **True** 。**该参数仅对无框窗口有效，对普通窗口无效。**
+- **`easy_drag`** 是否开启无框窗口的拖动模式。可通过拖动任何点来移动窗口。默认值为**True**。**该参数仅对无框窗口有效，对普通窗口无效。**
+- **`focus`** 是否创建一个可聚焦的窗口。默认为 **True** 。
 - **`minimized`** 是否开启最小化模式。默认为 **False** 。
+- **`maximized`** 是否开启最小化模式。默认为 **False** 。
 - **`on_top`** 设置窗口始终在其他窗口的顶部。默认为 **False** 。
 - **`confirm_close`** 是否显示窗口关闭确认对话框。默认为 **False** 。
 - **`background_color`** 加载 WebView 之前显示的窗口的背景颜色。指定为十六进制颜色。默认是 **'#FFFFFF'** 。

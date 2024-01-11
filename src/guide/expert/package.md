@@ -15,8 +15,8 @@ pnpm run build
 
 基于 [Pyinstaller](https://www.pyinstaller.org) 将项目代码打包成可执行文件。
 
-- 在 `Windows` 环境下打包成 `exe` 格式的可执行文件
-- 在 `macOS` 环境下打包成 `app` 格式的可执行文件
+- 在 `Windows` 环境下打包成 `exe` 格式的可执行文件。
+- 在 `macOS` 环境下打包成 `app` 格式的可执行文件。（用 `x86_64` 芯片打包的应用可以在 `x86_64` 和 `M` 芯片电脑上运行，用 `M` 芯片打包的应用只能在 `M` 芯片电脑上运行）
 
 打包过程，会先由 `pyapp/spec/getSpec.py` 脚本生成 `windows.spec` 或 `macos.spec` 打包配置文件，之后基于该配置文件进行打包。
 
@@ -205,3 +205,22 @@ jobs:
 将代码提交至 `Github` 后，在 `Actions` 下会自动生成两种系统的程序包。
 
 ![image](https://pangao1990.gitee.io/vitepress/ppx/guide-expert-package-1.png)
+
+## 打包后程序白屏的一些解决方案
+
+**PPX** 显示 GUI 窗口的本质是显示 HTML 页面，因此出现白屏现象极有可能是系统不支持正常显示 HTML 页面。
+
+一般情况下，macOS 不会出现白屏。在 Windows 系统下出现白屏，可以按以下步骤排查：
+
+- 确保底层依赖软件已经正确安装
+
+  - [.NET Framework](https://dotnet.microsoft.com/zh-cn/download/dotnet-framework) 软件版本需大于 4.0
+  - [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) 本地电脑能支持的最新版本
+
+- 使用 CEF 模式打包
+
+  CEF 模式打包本质上是内置一个 Chrome v66 的浏览器，用于支持显示 HTML 页面。
+
+  ```shell
+  pnpm run build:cef
+  ```
