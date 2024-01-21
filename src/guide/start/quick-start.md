@@ -4,6 +4,8 @@
 
 ### 运行环境
 
+- Node.js 16.14+ ([pnpm 安装教程](https://blog.pangao.vip/NodeJs安装教程/))
+
 - pnpm 8.x+ ([pnpm 安装教程](https://pnpm.io/zh/installation))
 
 - Python 3.8-3.11 ([Python 安装教程](https://blog.pangao.vip/Python环境搭建及模块安装))
