@@ -76,6 +76,14 @@ pnpm run pre:folder
 pnpm run pre:folder:cef
 ```
 
+### 正式打包，单个 exe 程序
+
+仅 win 系统。
+
+```shell
+pnpm run build:pure
+```
+
 ### 正式打包，cef 兼容模式
 
 仅 win 系统。

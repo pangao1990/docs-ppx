@@ -6,7 +6,7 @@
 # 程序基础配置信息
 appName = 'PPX'  # 应用名称
 appNameEN = 'ppx'    # 应用名称-英文（用于生成缓存文件夹，必须是英文）
-appVersion = "V4.2.0"  # 应用版本号
+appVersion = "V4.4.0"  # 应用版本号
 appDeveloper = "PanGao"  # 应用开发者
 appBlogs = "https://blog.pangao.vip"  # 个人博客
 appPackage = 'vip.pangao'    # 应用包名，用于在本地电脑生成 vip.pangao.ppx 唯一文件夹
@@ -24,10 +24,12 @@ appISSID = ''    # Inno Setup 打包唯一编号。在执行 pnpm run init 之�
 # 系统配置信息（不需要修改，可以自动获取）
 appSystem = platform.system()    # 本机系统类型
 appIsMacOS = appSystem == 'Darwin'    # 是否为macOS系统
-codeDir = sys.path[0].replace('base_library.zip', '')    # 代码根目录
-appDir = codeDir.replace(appName+'.app/Contents/MacOS/', '')    # 程序所在绝对目录
-staticDir = os.path.join(codeDir, 'static')    # 程序包中的static文件夹的绝对路径
-storageDir = ''    # 电脑上的存储目录
+# 代码根目录，一般情况下，也是程序所在的绝对目录
+#（但在build:pure打包成的独立exe程序中，codeDir是执行代码的缓存根目录，而非程序所在的绝对目录）
+codeDir = sys.path[0].replace('base_library.zip', '')
+# 代码根目录下的static文件夹的绝对路径
+staticDir = os.path.join(codeDir, 'static')
+appDataDir = ''    # 电脑上可持久使用的隐藏目录
 downloadDir = ''    # 电脑上的下载目录
 ```
 
@@ -68,6 +70,6 @@ def getDir(self):
     storageDir = os.path.join(storageDir, Config.appPackage+'.'+Config.appNameEN)
     if not os.path.isdir(storageDir):
         os.mkdir(storageDir)
-    Config.storageDir = storageDir    # 电脑上的存储目录
+    Config.storageDir = storageDir    # 电脑上可持久使用的隐藏目录
     Config.downloadDir = downloadDir    # 电脑上的下载目录
 ```
