@@ -20,7 +20,7 @@ pnpm run start
 
 ### 正式打包
 
-macOS 系统打包 dmg 程序，Windows 系统打包 exe 程序。当然，也可以基于 Github Action 实现同时打包两种安装包。
+macOS 系统打包 dmg 程序，Windows 系统打包 exe Linux 系统打包 deb 程序。当然，也可以基于 Github Action 实现同时打包三种安装包。
 
 ```shell
 pnpm run build

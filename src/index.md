@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "PPX"
   text: "构建跨平台客户端应用"
-  tagline: 基于 JavaScript 和 Python，一键生成 macOS 和 Windows 平台客户端应用
+  tagline: 基于 JavaScript 和 Python，一键生成 macOS 、Windows 和 Linux 平台客户端应用
   image:
     src: /logo.svg
     alt: PPX
@@ -23,7 +23,7 @@ features:
   - title: 🏗 模块化设计
     details: 采用 Python 编程语言开发业务层，海量模块任你挑选！
   - title: 📦 一键打包
-    details: 本应用已经封装打包环节，一键生成 macOS 和 Windows 平台的客户端应用。
+    details: 本应用已经封装打包环节，一键生成 macOS 、Windows 和 Linux 平台的客户端应用。
   - title: 💡 自动升级
     details: 基于 Github，打包后的客户端应用可自动检测升级。
   - title: 🔑 数据库支持

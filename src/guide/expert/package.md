@@ -17,8 +17,9 @@ pnpm run build
 
 - 在 `Windows` 环境下打包成 `exe` 格式的可执行文件。
 - 在 `macOS` 环境下打包成 `app` 格式的可执行文件。（用 `x86_64` 芯片打包的应用可以在 `x86_64` 和 `M` 芯片电脑上运行，用 `M` 芯片打包的应用只能在 `M` 芯片电脑上运行）
+- 在 `Linux` 环境下打包成二进制格式的可执行文件。(在特定 CPU 架构下打包就只能在特定 CPU 架构下运行)
 
-打包过程，会先由 `pyapp/spec/getSpec.py` 脚本生成 `windows.spec` 或 `macos.spec` 打包配置文件，之后基于该配置文件进行打包。
+打包过程，会先由 `pyapp/spec/getSpec.py` 脚本生成 `windows.spec` 或 `macos.spec` 或 `linux.spec` 打包配置文件，之后基于该配置文件进行打包。
 
 ::: tip 注意  
 这里需要注意一个问题。因 `Pyinstaller` 的打包机制，可能会造成某些动态库或者 Python 模块并没有被打包进可执行文件。因此，可能出现在生产环境运行没问题。但是打包后，就提示某些动态库或模块丢失。遇到这种情况，就需要在打包配置文件中添加丢失的动态库或模块。  
@@ -54,6 +55,7 @@ addModules = "('../../gui/dist', 'web'), ('../../static', 'static')"
 
 - 在 `Windows` 环境下，基于 [InnoSetup](https://jrsoftware.org/isinfo.php) ，打包成 `exe` 格式的安装程序
 - 在 `macOS` 环境下，基于 [appdmg](https://github.com/LinusU/node-appdmg) ，打包成 `dmg` 格式的安装程序
+- 在 `Linux` 环境下，基于 dpkg ，打包成 `deb` 格式的安装程序
 
 ##### 打包成 exe
 
@@ -131,9 +133,17 @@ appISSID = Config.appISSID    # 安装包唯一GUID
 }
 ```
 
+##### 打包成 deb
+
+打包过程，会先由 `pyapp/package/deb/makeDeb.py` 脚本生成 `control` `postinst` `PPX.desktop` 等打包配置文件，之后基于这些配置文件进行打包。
+
+::: warning 提示  
+PPX 仅在 Ubuntu 22.04.2 版测试成功，其他 Linux 版本还请开发者自行测试。  
+:::
+
 ### 跨平台打包
 
-在本机电脑操作，只能打包出本系统对应的程序包。如果想打包出两种系统的程序包，需要借助 `Github Action` 的能力。
+在本机电脑操作，只能打包出本系统对应的程序包。如果想打包出三种系统的程序包，需要借助 `Github Action` 的能力。
 
 ::: warning 提示  
 这里需要有 Github 操作基础。  
@@ -151,7 +161,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [windows-latest, macos-latest, ubuntu-latest]
     steps:
       - name: 拉取项目代码
         uses: actions/checkout@v3
@@ -202,7 +212,7 @@ jobs:
           path: build/*-*_*.*
 ```
 
-将代码提交至 `Github` 后，在 `Actions` 下会自动生成两种系统的程序包。
+将代码提交至 `Github` 后，在 `Actions` 下会自动生成三种系统的程序包。
 
 ![image](https://pangao1990.gitee.io/vitepress/ppx/guide-expert-package-1.png)
 

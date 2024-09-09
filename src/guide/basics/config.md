@@ -6,7 +6,7 @@
 # 程序基础配置信息
 appName = 'PPX'  # 应用名称
 appNameEN = 'ppx'    # 应用名称-英文（用于生成缓存文件夹，必须是英文）
-appVersion = "V4.4.0"  # 应用版本号
+appVersion = "V5.0.0"  # 应用版本号
 appDeveloper = "PanGao"  # 应用开发者
 appBlogs = "https://blog.pangao.vip"  # 个人博客
 appPackage = 'vip.pangao'    # 应用包名，用于在本地电脑生成 vip.pangao.ppx 唯一文件夹
@@ -22,6 +22,7 @@ appISSID = ''    # Inno Setup 打包唯一编号。在执行 pnpm run init 之�
 
 ```Python
 # 系统配置信息（不需要修改，可以自动获取）
+cpuArch = platform.processor()    # 本机CPU架构
 appSystem = platform.system()    # 本机系统类型
 appIsMacOS = appSystem == 'Darwin'    # 是否为macOS系统
 # 代码根目录，一般情况下，也是程序所在的绝对目录
@@ -61,15 +62,18 @@ def getDir(self):
     if Config.appSystem == 'Darwin':
         # Mac系统
         user = getpass.getuser()
-        storageDir = os.path.join('/', 'Users', user, 'Library', 'Application Support')
         downloadDir = os.path.join('/', 'Users', user, 'Downloads')
-    else:
+        appDataDir = os.path.join('/', 'Users', user, 'Library', 'Application Support', Config.appPackage+'.'+Config.appNameEN)
+    elif Config.appSystem == 'Windows':
         # win系统
-        storageDir = os.getenv('APPDATA')
         downloadDir = os.path.join(os.getenv('USERPROFILE'), 'Downloads')
-    storageDir = os.path.join(storageDir, Config.appPackage+'.'+Config.appNameEN)
-    if not os.path.isdir(storageDir):
-        os.mkdir(storageDir)
-    Config.storageDir = storageDir    # 电脑上可持久使用的隐藏目录
+        appDataDir = os.path.join(os.getenv('APPDATA'), Config.appPackage+'.'+Config.appNameEN)
+    elif Config.appSystem == 'Linux':
+        # linux系统
+        downloadDir = os.path.join(os.getenv('HOME'), 'Downloads')
+        appDataDir = os.path.join(os.getenv('HOME'), '.'+Config.appPackage+'.'+Config.appNameEN)
+    if not os.path.isdir(appDataDir):
+        os.mkdir(appDataDir)
+    Config.appDataDir = appDataDir    # 电脑上可持久使用的隐藏目录
     Config.downloadDir = downloadDir    # 电脑上的下载目录
 ```

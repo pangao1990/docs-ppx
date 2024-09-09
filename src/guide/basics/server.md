@@ -21,7 +21,7 @@ import webview
 class System():
     '''系统类'''
 
-    window = None
+    _window = None
 
     def system_getAppInfo(self):
         '''程序基础配置信息'''
@@ -41,7 +41,7 @@ class System():
         # 可选文件类型
         # fileTypes = ['Excel表格 (*.xlsx;*.xls)']
         fileTypes = tuple(fileTypes)    # 要求必须是元组
-        result = System.window.create_file_dialog(dialog_type=webview.OPEN_DIALOG, directory=directory, allow_multiple=True, file_types=fileTypes)
+        result = System._window.create_file_dialog(dialog_type=webview.OPEN_DIALOG, directory=directory, allow_multiple=True, file_types=fileTypes)
         resList = list()
         if result is not None:
             for res in result:
