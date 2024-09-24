@@ -6,7 +6,7 @@
 # 程序基础配置信息
 appName = 'PPX'  # 应用名称
 appNameEN = 'ppx'    # 应用名称-英文（用于生成缓存文件夹，必须是英文）
-appVersion = "V5.0.0"  # 应用版本号
+appVersion = "V5.1.0"  # 应用版本号
 appDeveloper = "PanGao"  # 应用开发者
 appBlogs = "https://blog.pangao.vip"  # 个人博客
 appPackage = 'vip.pangao'    # 应用包名，用于在本地电脑生成 vip.pangao.ppx 唯一文件夹
