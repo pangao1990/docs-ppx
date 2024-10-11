@@ -47,11 +47,11 @@
   <table rules="none">
 	  <tr>
 		  <td align="center">
-			  <img src="https://pangao1990.gitee.io/images/wechatpay.jpg" alt="潘高 微信支付" style="width:240px; height:240px;" />
+			  <img src="https://cdn.jsdelivr.net/gh/pangao1990/pangao1990.github.io/images/wechatpay.jpg" alt="潘高 微信支付" style="width:240px; height:240px;" />
               <font color="#159718">微信支付</font>
 		  </td>
 		  <td align="center">
-			  <img src="https://pangao1990.gitee.io/images/alipay.png" alt="潘高 支付宝" style="width:240px; height:240px;" />
+			  <img src="https://cdn.jsdelivr.net/gh/pangao1990/pangao1990.github.io/images/alipay.png" alt="潘高 支付宝" style="width:240px; height:240px;" />
               <font color="#217cfb">支付宝</font>
 		  </td>
 	  </tr>

@@ -214,7 +214,7 @@ jobs:
 
 将代码提交至 `Github` 后，在 `Actions` 下会自动生成三种系统的程序包。
 
-![image](https://pangao1990.gitee.io/vitepress/ppx/guide-expert-package-1.png)
+![image](https://cdn.jsdelivr.net/gh/pangao1990/docs-ppx/src/public/image/guide-expert-package-1.png)
 
 ## 打包后程序白屏的一些解决方案
 

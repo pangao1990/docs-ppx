@@ -142,4 +142,4 @@ https://api.github.com/repos/用户名/仓库名/releases/latest
 
 <br />
 
-![image](https://pangao1990.gitee.io/vitepress/ppx/guide-expert-update-1.png)
+![image](https://cdn.jsdelivr.net/gh/pangao1990/docs-ppx/src/public/image/guide-expert-update-1.png)
