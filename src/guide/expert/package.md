@@ -54,7 +54,7 @@ addModules = "('../../gui/dist', 'web'), ('../../static', 'static')"
 ### 打包成安装程序
 
 - 在 `Windows` 环境下，基于 [InnoSetup](https://jrsoftware.org/isinfo.php) ，打包成 `exe` 格式的安装程序
-- 在 `macOS` 环境下，基于 [appdmg](https://github.com/LinusU/node-appdmg) ，打包成 `dmg` 格式的安装程序
+- 在 `macOS` 环境下，基于 [dmgbuild](https://github.com/dmgbuild/dmgbuild) ，打包成 `dmg` 格式的安装程序
 - 在 `Linux` 环境下，基于 dpkg ，打包成 `deb` 格式的安装程序
 
 ##### 打包成 exe
@@ -93,44 +93,26 @@ appISSID = Config.appISSID    # 安装包唯一GUID
 
 ##### 打包成 dmg
 
-打包过程，会先由 `pyapp/package/dmg/getJson.py` 脚本生成 `dmg.json` 打包配置文件，之后基于该配置文件进行打包。
+打包过程，会先由 `pyapp/package/dmg/getDMG.py` 脚本生成 `dmg.py` 打包配置文件，之后基于该配置文件进行打包。
 
 在打包之前，请替换 `pyapp/package/dmg/bg.png` 背景图片和 `pyapp/package/dmg/潘高的小站.webloc` 网址文件。
 
 ```Python{4,19-24}
-{
-    "title": "''' + appName + '''",
-    "icon": "../../icon/logo.icns",
-    "background": "bg.png",
-    "icon-size": 50,
-    "contents": [
-        {
-            "x": 160,
-            "y": 120,
-            "type": "file",
-            "path": "../../../build/''' + appName + '''.app"
-        },
-        {
-            "x": 430,
-            "y": 120,
-            "type": "link",
-            "path": "/Applications"
-        },
-        {
-            "x": 450,
-            "y": 243,
-            "type": "file",
-            "path": "./潘高的小站.webloc"
-        }
-    ],
-    "window": {
-        "size": {
-            "width": 590,
-            "height": 416
-        }
-    },
-    "format": "UDBZ"
+filename = 'PPX'
+volume_name = 'PPX.dmg'
+format = 'UDBZ'
+files = ['~/build/PPX.app', '~/pyapp/package/dmg/潘高的小站.webloc']
+symlinks = {'Applications': '/Applications'}
+icon_locations = {
+    'PPX.app': (160, 120),
+    'Applications': (430, 120),
+    '潘高的小站.webloc': (450, 243)
 }
+window_rect = ((200, 200), (590, 416))
+icon_size = 60
+text_size = 12
+badge_icon = '~/pyapp/icon/logo.icns'
+background = '~/pyapp/package/dmg/bg.png'
 ```
 
 ##### 打包成 deb
