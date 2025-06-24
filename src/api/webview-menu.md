@@ -85,6 +85,5 @@ if __name__ == '__main__':
 
 ```
 
-效果展示：
-
-![image](https://pangao1990.gitee.io/vitepress/ppx/api-webview-menu-1.png)
+效果展示：  
+![image](https://cdn.jsdelivr.net/gh/pangao1990/docs-ppx/src/public/image/api-webview-menu-1.png)

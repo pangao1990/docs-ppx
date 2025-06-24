@@ -88,6 +88,7 @@ export default defineConfig({
           text: "高级",
           collapsed: false,
           items: [
+            { text: "数据库", link: "/guide/expert/db" },
             { text: "域间通信", link: "/guide/expert/communication" },
             { text: "应用更新", link: "/guide/expert/update" },
             { text: "应用打包", link: "/guide/expert/package" },

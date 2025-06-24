@@ -6,7 +6,7 @@
 # 程序基础配置信息
 appName = 'PPX'  # 应用名称
 appNameEN = 'ppx'    # 应用名称-英文（用于生成缓存文件夹，必须是英文）
-appVersion = "V5.2.1"  # 应用版本号
+appVersion = "V5.3.0"  # 应用版本号
 appDeveloper = "PanGao"  # 应用开发者
 appBlogs = "https://blog.pangao.vip"  # 个人博客
 appPackage = 'vip.pangao'    # 应用包名，用于在本地电脑生成 vip.pangao.ppx 唯一文件夹
@@ -41,10 +41,15 @@ downloadDir = ''    # 电脑上的下载目录
 devPort = '5173'    # 开发环境中的前端页面端口
 devEnv = True    # 是否为开发环境，不需要手动更改，在程序运行的时候自动判断
 ifCoverDB = False    # 是否覆盖电脑上存储的数据库，默认不覆盖。只有在数据库改动非常大，不得已的情况下才建议覆盖数据库
+typeDB = 'json'    # 数据库类型，目前支持: json, sql
+pwDB = b''    # 数据库密码，typeDB=json时有效。若要重置密码，请在执行 pnpm run init 之前，设置为空，程序会自动生成密码，生成后请勿修改！！！
+
 ```
 
 **注意：**  
-`devPort` 参数，填入视图层（前端）的开发模式的端口。
+`devPort` 参数，填入视图层（前端）的开发模式的端口。  
+`typeDB` 参数，选择数据库类型，默认选择 TinyDB 数据库。若要修改为 SQLite 数据库，请查看 [更换数据库](/guide/expert/db.md)。  
+`pwDB` 参数，typeDB 为 json 时有效。若要重置，请在执行 pnpm run init 之前，设置为空，程序会自动生成密码，生成后请勿修改！！！
 
 ### 函数
 
