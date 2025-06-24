@@ -15,12 +15,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: 拉取项目代码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 安装node环境
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "19"
 
@@ -54,10 +54,10 @@ jobs:
       - uses: actions/configure-pages@v2
 
       - name: 上传构建后的文件夹
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: dist
 
       - name: 部署
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
