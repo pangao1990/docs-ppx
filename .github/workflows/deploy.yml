@@ -52,13 +52,13 @@ jobs:
         run: pnpm run build
 
       - name: 配置 GitHub Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
 
       - name: 上传构建后的文件夹
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
       - name: 部署
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
