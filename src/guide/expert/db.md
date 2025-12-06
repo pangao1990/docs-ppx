@@ -20,7 +20,7 @@
   ```
   # 数据库 - json
   # tinydb==4.8.2
-  # cryptography==45.0.4
+  # cryptography==46.0.3
   # 数据库 - sql
   tinyaes==1.1.0
   sqlalchemy==2.0.7
