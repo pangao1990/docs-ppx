@@ -52,7 +52,7 @@ await ppx.call('applicationUpdate.cancel')
 
 ## 安装包选择规则
 
-PPX 根据运行系统选择 `.exe`、`.dmg` 或 `.deb`，并通过文件名识别 Windows、macOS、Linux。优先选择匹配 CPU 架构的文件，支持 `arm64/aarch64`、`x64/x86_64/amd64`、`x86/i386/i686/ia32` 和 `arm/armv7l/armhf`。仅有一个候选但明确标记了其他架构时也会拒绝；未标记架构的文件作为通用候选，因此发布者必须保证这类文件确实适用于目标设备。
+PPX 根据运行系统选择 `.exe`、`.dmg` 或 `.deb`，并通过文件名识别 Windows、macOS、Linux。CPU 架构可写在文件名或 GitHub 资产标签中，例如 `PPX-V6.0.0_macOS.dmg (arm64)`。优先选择匹配 CPU 架构的文件，支持 `arm64/aarch64`、`x64/x86_64/amd64`、`x86/i386/i686/ia32` 和 `arm/armv7l/armhf`。仅有一个候选但明确标记了其他架构时也会拒绝；文件名与资产标签均未标记架构的文件作为通用候选，因此发布者必须保证这类文件确实适用于目标设备。
 
 建议命名：
 

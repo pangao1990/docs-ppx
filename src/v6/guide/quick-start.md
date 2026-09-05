@@ -53,7 +53,7 @@ Linux 还需要 GTK3、WebKitGTK 和 PyGObject。Windows 正式打包需要 Inno
 
 ## 2. 安装 ppx-py
 
-当前版本正式发布后：
+从官方 PyPI 安装：
 
 ```bash
 python -m pip install ppx-py==6.0.0
@@ -62,8 +62,8 @@ ppx --version
 
 应该看到 `PPX 6.0.0`。
 
-::: warning 从源码体验
-当前版本仍处于发布候选阶段。如果 PyPI/npm 尚未提供两个新包，请不要安装同名的非正式内容，改用下面的源码方式。
+::: tip 应用开发与框架开发
+开发自己的应用时，使用官方 `ppx-py` 与 `ppx-js` 包即可。需要修改框架本身、提交修复时，再使用下面的源码方式。
 :::
 
 从源码运行框架仓库：
@@ -79,7 +79,7 @@ ppx doctor
 ppx dev
 ```
 
-如果你的目标是开发自己的应用，两个包发布后优先使用 `ppx new`；源码仓库主要服务于 PPX 框架贡献者。
+如果你的目标是开发自己的应用，优先使用 `ppx new`；源码仓库主要服务于 PPX 框架贡献者。
 
 ## 3. 创建项目
 

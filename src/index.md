@@ -34,8 +34,8 @@ features:
     details: 在 Windows、macOS、Linux 分别生成对应安装包，并保留平台签名与真机验收边界。
 ---
 
-::: info 当前开发状态
-本站默认介绍 PPX 最新版。当前版本正在准备发布，两个框架包尚未发布时请按[源码方式](/v6/guide/quick-start#_2-安装-ppx-py)体验。[V5 归档入口](/v5/)始终保留。
+::: info 文档版本
+本站默认介绍 PPX 最新版。[V5 归档入口](/v5/)始终保留，旧项目请使用对应的归档教程。
 :::
 
 ## PPX 解决什么问题？
@@ -83,9 +83,7 @@ ppx init
 ppx dev
 ```
 
-::: warning 发布状态
-当前版本仍按发布候选版本进行三端验收。两个新包正式发布到 PyPI 和 npm 后，上述安装命令才适用于普通用户；在此之前，请按照快速上手中的“从源码运行”方式体验。
-:::
+框架包：[ppx-py · PyPI](https://pypi.org/project/ppx-py/) · [ppx-js · npm](https://www.npmjs.com/package/ppx-js)。桌面示例安装包见 [GitHub Releases](https://github.com/pangao1990/PPX/releases)。
 
 ## 开发者真正需要维护什么？
 

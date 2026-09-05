@@ -25,7 +25,7 @@ PPX 只发布两个框架包：
 
 工作流会安装业务依赖，准备 Windows 的 Inno Setup 6 和 Linux 的 GTK/WebKitGTK、PyGObject、dpkg，并验证渲染后端可导入。没有生成安装包时任务会失败，不会上传空产物。Linux 固定使用 Ubuntu 24.04；更早发行版和其他 CPU 架构需另行构建和验收。
 
-自动打包只上传候选文件，不会自动发布 npm/PyPI 或创建 Release。
+`build` 自动打包只上传候选文件，不会自动发布包或创建 Release。独立的 `publish-pypi` 手动工作流可以通过 PyPI 可信发布上传 Python 包，具体配置见下文。
 
 ## CI 为什么分两阶段？
 
@@ -142,7 +142,7 @@ node --input-type=module -e "import('ppx-js').then(m => console.log(typeof m.ppx
 
 ## 正式发布顺序
 
-正式顺序是：发布 `ppx-py`；从 PyPI 重装验证；发布 `ppx-js`；从 npm 重装验证；三端安装包完成后创建 Release 并附带 SHA-256 与 `ppx-update.json`。PyPI/npm 不能覆盖同一版本，上传 6.0.0 前必须确认候选内容就是最终内容。
+正式顺序是：发布 `ppx-py`；从 PyPI 重装验证；发布 `ppx-js`；从 npm 重装验证；三端安装包完成后创建 Release 并附带 SHA-256 与 `ppx-update.json`。PyPI/npm 不能覆盖同一版本。`6.0.0` 已发布，以下上传命令仅说明流程，维护者不要重新执行相同版本的上传。
 
 ```bash
 python -m twine upload dist/release/ppx_py-6.0.0*
@@ -180,4 +180,25 @@ PyPI 和 npm 都不允许重新上传已经存在的相同版本。即使应用�
 - 不要为了保持版本号而删除、覆盖或伪造产物；
 - 候选目录和最终上传文件的 SHA-256 必须一致。
 
-当前版本处于本地验证阶段，不能因为旧三包已经发布就跳过两包的完整发布闸门。
+旧的 `ppx-core`、`ppx-build`、`ppx-bridge` 已停止使用，当前项目只依赖 `ppx-py` 与 `ppx-js`。后续发布仍需完成两包的独立验证，不能覆盖已发布的 `6.0.0`。
+
+
+## PyPI 可信发布配置
+
+仓库保留 `build` 三端在线打包，另提供 `publish-pypi` 手动发布工作流。普通推送不会直接上传 PyPI。
+
+首次配置时，在 PyPI 项目管理的 Publishing 页面（新项目使用账号的 Publishing 页面）选择 GitHub，填写：
+
+| 字段 | PPX 官方仓库的配置 |
+| --- | --- |
+| PyPI Project Name | `ppx-py` |
+| Owner | `pangao1990` |
+| Repository name | `PPX` |
+| Workflow name | `publish-pypi.yml` |
+| Environment name | `pypi` |
+
+GitHub 仓库的 `pypi` 环境限制为 `main` 分支。维护自己的派生项目时，必须替换为自己的包名与仓库信息；推荐添加维护者审批。
+
+发布时先等待 `build` 的六组质量检查和三个安装包任务全部成功，再进入 **Actions → publish-pypi → Run workflow**，输入这次成功运行的数字 ID。工作流要求该运行与当前 `main` 的源码提交完全一致，同时检查仓库、分支、触发事件与结果；通过后构建并检查 wheel/sdist，最后使用短期 OIDC 身份完成 PyPI 上传，不需要保存长期 API token。
+
+如果期间又推送了新提交，先完成新提交的构建，再输入新的运行 ID。不要为了通过发布检查而借用旧提交的成功结果。
