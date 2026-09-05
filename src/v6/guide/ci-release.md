@@ -43,9 +43,9 @@ PPX 只发布两个框架包：
 
 ## 质量矩阵
 
-质量矩阵使用 Python 3.9、3.11、3.13 和 Node.js 22、24 运行环境诊断、Python/JavaScript 测试、GUI 构建、发布源码一致性检查与 `pip check`。npm 官方安全审计在矩阵中固定执行一次，避免重复请求；任一高危漏洞都会阻止后续三端构建。
+质量矩阵使用 Python 3.10、3.11、3.13 和 Node.js 22、24 运行环境诊断、Python/JavaScript 测试、GUI 构建、发布源码一致性检查与 `pip check`。npm 官方安全审计和 Python 的 `pip-audit` 在矩阵中固定执行一次，避免重复请求；前端高危漏洞或 Python 已知依赖漏洞会阻止后续三端构建。
 
-推荐矩阵：Python 3.9/3.11/3.13 运行 Python 测试；Node 22/24 运行 `ppx-js` 测试与 GUI 构建；Windows、macOS、Linux 各自执行 `ppx build` 和安装包验证。
+推荐矩阵：Python 3.10/3.11/3.13 运行 Python 测试；Node 22/24 运行 `ppx-js` 测试与 GUI 构建；Windows、macOS、Linux 各自执行 `ppx build` 和安装包验证。
 
 本地提交前先运行：
 
@@ -131,7 +131,7 @@ node --input-type=module -e "import('ppx-js').then(m => console.log(typeof m.ppx
 - README 和在线文档的命令、版本、错误码一致；
 - wheel 包含运行、CLI、更新、打包、默认图片和许可证；
 - tgz 只包含入口、类型、说明和许可证；
-- Python 3.9/3.11/3.13 全部通过；
+- Python 3.10/3.11/3.13 全部通过；
 - Node 22/24 全部通过；
 - Windows、macOS、Linux 安装器全部构建；
 - 三台真实系统完成安装、启动、RPC、升级和卸载；

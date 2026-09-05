@@ -17,7 +17,7 @@ hello-ppx/
 
 ## 1. 准备环境
 
-安装 Python 3.9+、Node.js 22.13+、pnpm 11.x。建议每个项目使用独立虚拟环境：
+安装 Python 3.10+、Node.js 22.13+、pnpm 11.x。图像处理依赖使用已修复安全问题的 Pillow 12.3.0，因此不再支持 Python 3.9。旧环境请用新版 Python 重新创建虚拟环境，不要直接复制旧环境目录。建议每个项目使用独立虚拟环境：
 
 ```bash
 python --version
@@ -27,7 +27,7 @@ pnpm --version
 
 期望至少为：
 
-- Python 3.9；
+- Python 3.10；
 - Node.js 22.13；
 - pnpm 11.x。
 
