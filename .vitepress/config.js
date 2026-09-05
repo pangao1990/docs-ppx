@@ -1,212 +1,190 @@
-import { defineConfig } from "vitepress";
+import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
+const currentGuide = [
+  {
+    text: '从这里开始',
+    collapsed: false,
+    items: [
+      { text: '认识 PPX', link: '/v6/guide/introduction' },
+      { text: '十分钟快速上手', link: '/v6/guide/quick-start' },
+      { text: '示例工作台详解', link: '/v6/guide/example-workbench' },
+      { text: '项目结构', link: '/v6/guide/project-structure' },
+      { text: '配置文件', link: '/v6/guide/configuration' },
+    ],
+  },
+  {
+    text: '开发应用',
+    collapsed: false,
+    items: [
+      { text: '开发工作流', link: '/v6/guide/development' },
+      { text: 'Python 业务 API', link: '/v6/guide/python-api' },
+      { text: '前端桥接', link: '/v6/guide/frontend-bridge' },
+      { text: '本地存储', link: '/v6/guide/storage' },
+      { text: '环境诊断', link: '/v6/guide/doctor' },
+    ],
+  },
+  {
+    text: '更新与发布',
+    collapsed: false,
+    items: [
+      { text: '一键更新框架', link: '/v6/guide/framework-update' },
+      { text: '成品应用更新', link: '/v6/guide/application-update' },
+      { text: '三端打包', link: '/v6/guide/packaging' },
+      { text: 'CI 与发布', link: '/v6/guide/ci-release' },
+      { text: '故障排查', link: '/v6/guide/troubleshooting' },
+    ],
+  },
+]
+
+const currentReference = [
+  {
+    text: 'API 参考',
+    collapsed: false,
+    items: [
+      { text: '命令行', link: '/v6/reference/cli' },
+      { text: 'ppx.toml', link: '/v6/reference/config' },
+      { text: 'Python API', link: '/v6/reference/python' },
+      { text: 'JavaScript API', link: '/v6/reference/javascript' },
+      { text: '内置 RPC', link: '/v6/reference/rpc' },
+      { text: '更新清单', link: '/v6/reference/update-manifest' },
+    ],
+  },
+  {
+    text: '理解内部实现',
+    collapsed: false,
+    items: [
+      { text: '总体架构', link: '/v6/internals/architecture' },
+      { text: '启动与调用链', link: '/v6/internals/lifecycle' },
+      { text: '安全边界', link: '/v6/internals/security' },
+      { text: '参与开发', link: '/v6/internals/contributing' },
+    ],
+  },
+]
+
+const v5Guide = [
+  {
+    text: 'V5 文档（已归档）',
+    collapsed: false,
+    items: [
+      { text: 'V5 文档入口', link: '/v5/' },
+      { text: 'V5 原版首页', link: '/v5/home' },
+      { text: '简介', link: '/guide/start/introduction' },
+      { text: '快速上手', link: '/guide/start/quick-start' },
+      { text: '目录结构', link: '/guide/basics/tree' },
+      { text: '配置文件', link: '/guide/basics/config' },
+      { text: '视图层', link: '/guide/basics/gui' },
+      { text: '业务层', link: '/guide/basics/server' },
+      { text: '客户端', link: '/guide/basics/main' },
+      { text: '应用运行', link: '/guide/basics/run' },
+      { text: '数据库', link: '/guide/expert/db' },
+      { text: '域间通信', link: '/guide/expert/communication' },
+      { text: '应用更新', link: '/guide/expert/update' },
+      { text: '应用打包', link: '/guide/expert/package' },
+    ],
+  },
+]
+
+v5Guide.push({
+  text: 'V5 pywebview API',
+  collapsed: false,
+  items: [
+    { text: 'webview.create_window', link: '/api/webview-create-window' },
+    { text: 'webview.start', link: '/api/webview-start' },
+    { text: 'webview.screens', link: '/api/webview-screens' },
+    { text: 'webview.menu', link: '/api/webview-menu' },
+    { text: '拖拽区域', link: '/api/webview-DRAG-REGION-SELECTOR' },
+    { text: 'window', link: '/api/window' },
+  ],
+})
+
 export default defineConfig({
-  lang: "zh-CN",
-  title: "PPX",
-  description:
-    "基于 pywebview 和 PyInstaller 框架，构建 macOS 和 Windows 平台的客户端",
-  base: "/docs-ppx/", // 公共基础路径
-  srcDir: "./src", // 源目录
-  outDir: "./dist", // 构建输出位置
-  lastUpdated: true, //开启上次更新时间
+  lang: 'zh-CN',
+  title: 'PPX',
+  description: 'PPX：使用 Python 和任意 Web 前端构建 Windows、macOS、Linux 桌面应用',
+  base: '/docs-ppx/',
+  srcDir: './src',
+  outDir: './dist',
+  cleanUrls: true,
+  lastUpdated: true,
   head: [
-    ["link", { rel: "icon", href: "/logo.svg" }],
+    ['link', { rel: 'icon', href: '/docs-ppx/logo.svg' }],
     [
-      "script",
+      'script',
       {},
       `
         var _hmt = _hmt || [];
         (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?e2f1267b862442d982dfdc8fff4ec5a1";
-          var s = document.getElementsByTagName("script")[0];
+          var hm = document.createElement('script');
+          hm.src = 'https://hm.baidu.com/hm.js?e2f1267b862442d982dfdc8fff4ec5a1';
+          var s = document.getElementsByTagName('script')[0];
           s.parentNode.insertBefore(hm, s);
         })();
-        `,
+      `,
     ],
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-
-    // 定义右侧菜单导航
+    logo: '/logo.svg',
+    siteTitle: 'PPX',
     nav: [
+      { text: '首页', link: '/' },
+      { text: '指南', link: '/v6/guide/introduction', activeMatch: '^/v6/guide/' },
+      { text: 'API', link: '/v6/reference/cli', activeMatch: '^/v6/(reference|internals)/' },
       {
-        text: "指南",
-        link: "/guide/start/introduction",
-        activeMatch: "/guide", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
-      },
-      {
-        text: "API",
-        link: "/api/webview-create-window",
-        activeMatch: "/api", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
-      },
-      {
-        text: "致谢",
-        link: "/thanks/",
-        activeMatch: "/thanks", // activeMatch表示当URL中存在那些内容时，点亮该菜单按钮
-      },
-      {
-        text: "相关链接",
+        text: '版本',
+        activeMatch: '^/(v5|v6|guide|api)/',
         items: [
-          {
-            text: "讨论问题",
-            link: "https://github.com/pangao1990/PPX/issues",
-          },
-          {
-            text: "更新日志",
-            link: "https://github.com/pangao1990/PPX/releases",
-          },
+          { text: 'V6（当前版本）', link: '/v6/guide/introduction' },
+          { text: 'V5（归档版本）', link: '/v5/' },
+        ],
+      },
+      { text: '致谢', link: '/thanks/' },
+      {
+        text: '资源',
+        items: [
+          { text: 'GitHub 仓库', link: 'https://github.com/pangao1990/PPX' },
+          { text: '更新日志', link: 'https://github.com/pangao1990/PPX/blob/main/CHANGELOG.md' },
+          { text: 'ppx-py 源码', link: 'https://github.com/pangao1990/PPX/tree/main/ppx/packages/ppx-py' },
+          { text: 'ppx-js 源码', link: 'https://github.com/pangao1990/PPX/tree/main/ppx/packages/ppx-js' },
         ],
       },
     ],
-
-    // 侧边栏
     sidebar: {
-      "/guide/": [
-        {
-          text: "开始",
-          collapsed: false,
-          items: [
-            { text: "简介", link: "/guide/start/introduction" },
-            { text: "快速上手", link: "/guide/start/quick-start" },
-          ],
-        },
-        {
-          text: "基础",
-          collapsed: false,
-          items: [
-            { text: "目录结构", link: "/guide/basics/tree" },
-            { text: "配置文件", link: "/guide/basics/config" },
-            { text: "视图层", link: "/guide/basics/gui" },
-            { text: "业务层", link: "/guide/basics/server" },
-            { text: "客户端", link: "/guide/basics/main" },
-            { text: "应用运行", link: "/guide/basics/run" },
-          ],
-        },
-        {
-          text: "高级",
-          collapsed: false,
-          items: [
-            { text: "数据库", link: "/guide/expert/db" },
-            { text: "域间通信", link: "/guide/expert/communication" },
-            { text: "应用更新", link: "/guide/expert/update" },
-            { text: "应用打包", link: "/guide/expert/package" },
-          ],
-        },
-      ],
-      "/api/": [
-        {
-          text: "API",
-          collapsed: false,
-          items: [
-            {
-              text: "webview.create_window",
-              link: "/api/webview-create-window",
-            },
-            {
-              text: "webview.start",
-              link: "/api/webview-start",
-            },
-            {
-              text: "webview.screens",
-              link: "/api/webview-screens",
-            },
-            {
-              text: "webview.menu",
-              link: "/api/webview-menu",
-            },
-            {
-              text: "webview.drag_region_selector",
-              link: "/api/webview-DRAG-REGION-SELECTOR",
-            },
-            {
-              text: "window",
-              link: "/api/window",
-            },
-          ],
-        },
-      ],
+      '/v6/guide/': currentGuide,
+      '/v6/reference/': currentReference,
+      '/v6/internals/': currentReference,
+      '/v5/': v5Guide,
+      '/guide/': v5Guide,
+      '/api/': v5Guide,
     },
-
-    lang: "zh-CN",
-
-    // 导航栏最左侧的LOGO
-    logo: "/logo.svg",
-
-    // 导航栏最左侧的大标题
-    siteTitle: "PPX",
-
-    // 最右侧的友情链接小图标
     socialLinks: [
-      { icon: "github", link: "https://github.com/pangao1990/PPX" },
-      {
-        icon: {
-          svg: '<svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M512 1007.3590325C238.41320635 1007.3590325 16.6409675 785.58679365 16.6409675 512S238.41320635 16.6409675 512 16.6409675s495.3590325 221.77223885 495.3590325 495.3590325-221.77223885 495.3590325-495.3590325 495.3590325z m-158.16813907-426.90041421a89.41230537 89.41230537 0 1 0 0 178.82461073 89.41230537 89.41230537 0 0 0 0-178.82461073zM303.05756009 406.7857415a38.68754044 38.68754044 0 0 0-38.63800453 38.68754043v1.68422072c0 21.3499743 17.28803023 38.68754044 38.63800453 38.73707634a235.04786093 235.04786093 0 0 1 234.80018141 234.7506455c0 21.3499743 17.33756614 38.63800453 38.68754043 38.68754044h1.73375662a38.68754044 38.68754044 0 0 0 38.63800454-38.68754044 314.20623431 314.20623431 0 0 0-313.859483-313.85948299z m0-142.31665005a38.73707634 38.73707634 0 0 0 0 77.42461679c208.84336811 0 378.75151625 169.90814814 378.75151625 378.75151625a38.68754044 38.68754044 0 0 0 77.42461679 0c0-121.85832199-47.45539531-236.38533031-133.59833108-322.57780196a453.30305065 453.30305065 0 0 0-322.57780196-133.59833108z"></path></svg>',
-        },
-        link: "https://blog.pangao.vip",
-      },
+      { icon: 'github', link: 'https://github.com/pangao1990/PPX' },
     ],
-
-    // 最后更新的文本
-    lastUpdatedText: "最后更新",
-
-    // 为此页提供修改建议
+    lastUpdated: { text: '最后更新' },
     editLink: {
-      pattern: "https://github.com/pangao1990/docs-ppx/edit/main/src/:path",
-      text: "为此页提供修改建议",
+      pattern: 'https://github.com/pangao1990/docs-ppx/edit/main/src/:path',
+      text: '为此页提供修改建议',
     },
-
-    // 修改 上一页 或 下一页
-    docFooter: {
-      prev: "上一页",
-      next: "下一页",
-    },
-
-    // 页脚。注意，当侧边栏可见时，不会显示页脚
+    docFooter: { prev: '上一页', next: '下一页' },
     footer: {
-      copyright:
-        '本文档内容版权为 <a href="https://blog.pangao.vip/about" target="_blank" style="color:#10b981" onMouseOver="this.style.color=\'#059669\';this.style.textDecoration=\'underline\'" onMouseOut="this.style.color=\'#10b981\';this.style.textDecoration=\'none\'">PanGao</a> 所有，保留所有权利。',
+      message: '默认介绍 PPX 最新版；V5 文档已归档，可从版本菜单访问。',
+      copyright: 'Copyright © PanGao',
     },
-
-    // 显示在大纲中的标题级别
-    outline: "deep",
-
-    // 大纲标题
-    outlineTitle: "大纲链接",
-
-    // 返回顶部
-    returnToTopLabel: "返回顶部",
-
-    // 本地搜索
+    outline: { level: [2, 4], label: '本页目录' },
+    returnToTopLabel: '返回顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
     search: {
-      provider: "local",
+      provider: 'local',
       options: {
-        locales: {
-          zh: {
-            translations: {
-              button: {
-                buttonText: "搜索文档",
-                buttonAriaLabel: "搜索文档",
-              },
-              modal: {
-                noResultsText: "无法找到相关结果",
-                resetButtonTitle: "清除查询条件",
-                footer: {
-                  selectText: "选择",
-                  navigateText: "切换",
-                },
-              },
-            },
+        translations: {
+          button: { buttonText: '搜索文档', buttonAriaLabel: '搜索文档' },
+          modal: {
+            noResultsText: '没有找到相关内容',
+            resetButtonTitle: '清除查询',
+            footer: { selectText: '选择', navigateText: '切换', closeText: '关闭' },
           },
         },
       },
     },
-
-    // carbonAds
-    // carbonAds: {
-    //   code: "your-carbon-code",
-    //   placement: "your-carbon-placement",
-    // },
   },
-});
+})

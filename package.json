@@ -1,10 +1,20 @@
 {
+  "name": "docs-ppx",
+  "private": true,
+  "type": "module",
+  "version": "6.0.0",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=22.13.0",
+    "pnpm": ">=11.0.0 <12.0.0"
+  },
   "devDependencies": {
-    "vitepress": "1.0.0-beta.1"
+    "vitepress": "1.6.4"
   },
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "check": "vitepress build && node scripts/check-links.mjs"
   }
 }

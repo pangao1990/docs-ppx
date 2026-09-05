@@ -210,6 +210,29 @@
     --vp-layout-max-width: 1440px;
 }
 
+.ppx-legacy-banner {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0 0 2rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--vp-c-warning-2);
+    border-radius: 10px;
+    background: var(--vp-c-warning-soft);
+    color: var(--vp-c-text-1);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.ppx-legacy-banner strong {
+    font-size: 1rem;
+}
+
+.ppx-legacy-banner a {
+    width: fit-content;
+    color: var(--vp-c-brand-1);
+    font-weight: 600;
+}
+
 /**
  * Component: Header Anchor
  * -------------------------------------------------------------------------- */
@@ -475,4 +498,37 @@
     --vp-local-search-result-selected-border: var(--vp-c-brand);
     --vp-local-search-highlight-bg: var(--vp-c-green-lighter);
     --vp-local-search-highlight-text: var(--vp-c-black);
+}
+
+/* Match the original PPX logo using current VitePress color tokens. */
+:root {
+  --vp-c-brand-1: #006cb8;
+  --vp-c-brand-2: #2585c6;
+  --vp-c-brand-3: #006cb8;
+  --vp-c-brand-soft: rgba(0, 108, 184, .1);
+  --vp-home-hero-name-background: linear-gradient(120deg, #006cb8, #438923);
+  --vp-home-hero-image-background-image: linear-gradient(145deg, #d9edff, #ffe8a3);
+  --vp-home-hero-image-filter: blur(64px);
+}
+.dark {
+  --vp-c-brand-1: #80c4fa;
+  --vp-c-brand-2: #62b3ee;
+  --vp-c-brand-3: #2585c6;
+}
+.VPHome .VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 16px;
+}
+.VPHome .vp-doc {
+  max-width: 1120px;
+  margin: 48px auto 0;
+  padding: 0 32px 48px;
+}
+.VPHome .vp-doc > div { max-width: 860px; margin: auto; }
+.legacy-home-notice { max-width: 1152px; margin: 24px auto 0; padding: 0 32px; }
+.vp-doc p, .vp-doc li { line-height: 1.9; }
+.vp-doc td, .vp-doc th { line-height: 1.7; }
+@media (max-width: 640px) {
+  .VPHome .vp-doc { padding-inline: 24px; margin-top: 28px; }
+  .legacy-home-notice { padding-inline: 24px; }
 }

@@ -31,14 +31,6 @@
 |       夏林        |   2 元   |                                |
 |       曾姐        |   5 元   |                                |
 
-### 🍄 Stargazers
-
-[![Stargazers](https://reporoster.com/stars/pangao1990/PPX)](https://github.com/pangao1990/PPX/stargazers)
-
-### 🍄 Forkers
-
-[![Forkers](https://reporoster.com/forks/pangao1990/PPX)](https://github.com/pangao1990/PPX/network/members)
-
 ---
 
 ### 打赏 🥰🥰🥰
