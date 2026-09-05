@@ -14,6 +14,9 @@ const pages = new Map(files.map(file => [file, readFileSync(file, 'utf8')]))
 const failures = []
 let links = 0
 for (const [file, html] of pages) {
+  if (html.includes('href="https://pywebview.flowrl.com/guide/renderer.html')) {
+    failures.push(`${relative(root, file)} → pywebview 旧渲染器地址已失效`)
+  }
   const pageUrl = new URL(base + relative(root, file), 'https://local.invalid')
   for (const match of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
     const href = match[1].replaceAll('&amp;', '&')

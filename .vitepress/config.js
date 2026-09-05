@@ -106,6 +106,20 @@ export default defineConfig({
   outDir: './dist',
   cleanUrls: true,
   lastUpdated: true,
+  markdown: {
+    config(md) {
+      const renderLink = md.renderer.rules.link_open
+        || ((tokens, index, options, _env, self) => self.renderToken(tokens, index, options))
+      md.renderer.rules.link_open = (tokens, index, options, env, self) => {
+        // 保留 V5 Markdown 原文，在生成页面时修正上游已经迁移的地址。
+        const href = tokens[index].attrGet('href') || ''
+        if (href.split('#')[0] === 'https://pywebview.flowrl.com/guide/renderer.html') {
+          tokens[index].attrSet('href', 'https://pywebview.flowrl.com/guide/web_engine.html')
+        }
+        return renderLink(tokens, index, options, env, self)
+      }
+    },
+  },
   head: [
     ['link', { rel: 'icon', href: '/docs-ppx/logo.svg' }],
     [
